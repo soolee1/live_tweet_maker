@@ -32,6 +32,15 @@
     <input type="text" id="special" required /><br /><br />
     <label for="reservation_url">예약 링크:</label>
     <input type="url" id="reservation_url" required /><br /><br />
+    <label for="live_event">라이브 이벤트:</label><br />
+    <input type="radio" id="nekiru" name="live_event" value="NEKIRU" checked />
+    <label for="nekiru">NEKIRU</label><br />
+    <input type="radio" id="ntore" name="live_event" value="NTORE" />
+    <label for="ntore">NTORE</label><br />
+    <input type="radio" id="pochipuri" name="live_event" value="POCHIPURI" />
+    <label for="pochipuri">POCHIPURI</label><br />
+    <input type="radio" id="hcrv" name="live_event" value="HCRV" />
+    <label for="hcrv">HCRV</label><br /><br />
     <button onclick="generateTemplate()">생성</button>
 
     <hr />
@@ -59,6 +68,9 @@
         var goods_end_time = document.getElementById("goods_end_time").value;
         var special = document.getElementById("special").value;
         var reservation_url = document.getElementById("reservation_url").value;
+        var live_event = document.querySelector(
+          'input[name="live_event"]:checked'
+        ).value;
 
         var template = `
             【라이브 정보】
@@ -77,7 +89,7 @@
             ※ 주최 일괄 예약
             ${reservation_url}
 
-            #NEKIRU_LIVE
+            #${live_event}_LIVE
             `;
 
         document.getElementById("template").innerText = template;
