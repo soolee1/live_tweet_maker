@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>라이브 정보 입력</title>
+  </head>
+  <body>
+    <h1>라이브 정보 입력</h1>
+    <label for="date">날짜:</label>
+    <input type="date" id="date" required /><br /><br />
+    <label for="event_name">이벤트 이름:</label>
+    <input type="text" id="event_name" required /><br /><br />
+    <label for="open_time">개장 시간:</label>
+    <input type="time" id="open_time" required /><br /><br />
+    <label for="start_time">개연 시간:</label>
+    <input type="time" id="start_time" required /><br /><br />
+    <label for="venue">회장:</label>
+    <input type="text" id="venue" required /><br /><br />
+    <label for="reservation_price">예약 가격:</label>
+    <input type="number" id="reservation_price" min="0" required />₩<br /><br />
+    <label for="same_day_price">당일권 가격:</label>
+    <input type="number" id="same_day_price" min="0" required />₩<br /><br />
+    <label for="performance_start_time">출연 시작 시간:</label>
+    <input type="time" id="performance_start_time" required /><br /><br />
+    <label for="performance_end_time">출연 종료 시간:</label>
+    <input type="time" id="performance_end_time" required /><br /><br />
+    <label for="goods_start_time">물판 시작 시간:</label>
+    <input type="time" id="goods_start_time" required /><br /><br />
+    <label for="goods_end_time">물판 종료 시간:</label>
+    <input type="time" id="goods_end_time" required /><br /><br />
+    <label for="special">입장특전:</label>
+    <input type="text" id="special" required /><br /><br />
+    <label for="reservation_url">예약 링크:</label>
+    <input type="url" id="reservation_url" required /><br /><br />
+    <button onclick="generateTemplate()">생성</button>
+
+    <hr />
+
+    <div id="template"></div>
+
+    <script>
+      function roundToNearest5Minutes(timeString) {
+        var time = new Date("1970-01-01T" + timeString + ":00");
+        var minutes = time.getMinutes();
+        var roundedMinutes = Math.round(minutes / 5) * 5;
+        if (roundedMinutes === 60) {
+          time.setHours(time.getHours() + 1);
+          time.setMinutes(0);
+        } else {
+          time.setMinutes(roundedMinutes);
+        }
+        return time.toTimeString().slice(0, 5);
+      }
+
+      function generateTemplate() {
+        var date = document.getElementById("date").value;
+        var event_name = document.getElementById("event_name").value;
+        var open_time = roundToNearest5Minutes(
+          document.getElementById("open_time").value
+        );
+        var start_time = roundToNearest5Minutes(
+          document.getElementById("start_time").value
+        );
+        var venue = document.getElementById("venue").value;
+        var reservation_price =
+          document.getElementById("reservation_price").value;
+        var same_day_price = document.getElementById("same_day_price").value;
+        var performance_start_time = roundToNearest5Minutes(
+          document.getElementById("performance_start_time").value
+        );
+        var performance_end_time = roundToNearest5Minutes(
+          document.getElementById("performance_end_time").value
+        );
+        var goods_start_time = roundToNearest5Minutes(
+          document.getElementById("goods_start_time").value
+        );
+        var goods_end_time = roundToNearest5Minutes(
+          document.getElementById("goods_end_time").value
+        );
+        var special = document.getElementById("special").value;
+        var reservation_url = document.getElementById("reservation_url").value;
+
+        var template = `
+            【라이브 정보】
+
+            ${date}
+            ▶️ 「${event_name}」
+            개장 ${open_time} / 개연 ${start_time}
+            회장 : ${venue}
+            요금 : 예약 ${reservation_price}₩ / 당일권 ${same_day_price}₩
+
+            출연🎤 ${performance_start_time} ~ ${performance_end_time}
+            물판📷 ${goods_start_time} ~ ${goods_end_time}
+
+            🉐입장특전🉐 ${special}
+
+            ※ 주최 일괄 예약
+            ${reservation_url}
+
+            #NEKIRU_LIVE
+            `;
+
+        document.getElementById("template").innerText = template;
+      }
+    </script>
+  </body>
+</html>
