@@ -39,44 +39,24 @@
     <div id="template"></div>
 
     <script>
-      function roundToNearest5Minutes(timeString) {
-        var time = new Date("1970-01-01T" + timeString + ":00");
-        var minutes = time.getMinutes();
-        var roundedMinutes = Math.round(minutes / 5) * 5;
-        if (roundedMinutes === 60) {
-          time.setHours(time.getHours() + 1);
-          time.setMinutes(0);
-        } else {
-          time.setMinutes(roundedMinutes);
-        }
-        return time.toTimeString().slice(0, 5);
-      }
-
       function generateTemplate() {
         var date = document.getElementById("date").value;
         var event_name = document.getElementById("event_name").value;
-        var open_time = roundToNearest5Minutes(
-          document.getElementById("open_time").value
-        );
-        var start_time = roundToNearest5Minutes(
-          document.getElementById("start_time").value
-        );
+        var open_time = document.getElementById("open_time").value;
+        var start_time = document.getElementById("start_time").value;
         var venue = document.getElementById("venue").value;
         var reservation_price =
           document.getElementById("reservation_price").value;
         var same_day_price = document.getElementById("same_day_price").value;
-        var performance_start_time = roundToNearest5Minutes(
-          document.getElementById("performance_start_time").value
-        );
-        var performance_end_time = roundToNearest5Minutes(
-          document.getElementById("performance_end_time").value
-        );
-        var goods_start_time = roundToNearest5Minutes(
-          document.getElementById("goods_start_time").value
-        );
-        var goods_end_time = roundToNearest5Minutes(
-          document.getElementById("goods_end_time").value
-        );
+        var performance_start_time = document.getElementById(
+          "performance_start_time"
+        ).value;
+        var performance_end_time = document.getElementById(
+          "performance_end_time"
+        ).value;
+        var goods_start_time =
+          document.getElementById("goods_start_time").value;
+        var goods_end_time = document.getElementById("goods_end_time").value;
         var special = document.getElementById("special").value;
         var reservation_url = document.getElementById("reservation_url").value;
 
@@ -101,6 +81,16 @@
             `;
 
         document.getElementById("template").innerText = template;
+
+        // 클립보드에 템플릿 복사
+        navigator.clipboard
+          .writeText(template)
+          .then(() => {
+            alert("템플릿이 복사되었습니다.");
+          })
+          .catch((err) => {
+            console.error("복사 실패:", err);
+          });
       }
     </script>
   </body>
