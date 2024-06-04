@@ -3,49 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <title>라이브 정보 입력</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>라이브 정보 입력</h1>
-    <label for="date">날짜:</label>
-    <input type="date" id="date" required /><br /><br />
-    <label for="event_name">이벤트 이름:</label>
-    <input type="text" id="event_name" required /><br /><br />
-    <label for="open_time">개장 시간:</label>
-    <input type="time" id="open_time" required /><br /><br />
-    <label for="start_time">개연 시간:</label>
-    <input type="time" id="start_time" required /><br /><br />
-    <label for="venue">회장:</label>
-    <input type="text" id="venue" required /><br /><br />
-    <label for="reservation_price">예약 가격:</label>
-    <input type="number" id="reservation_price" min="0" required />₩<br /><br />
-    <label for="same_day_price">당일권 가격:</label>
-    <input type="number" id="same_day_price" min="0" required />₩<br /><br />
-    <label for="performance_start_time">출연 시작 시간:</label>
-    <input type="time" id="performance_start_time" required /><br /><br />
-    <label for="performance_end_time">출연 종료 시간:</label>
-    <input type="time" id="performance_end_time" required /><br /><br />
-    <label for="goods_start_time">물판 시작 시간:</label>
-    <input type="time" id="goods_start_time" required /><br /><br />
-    <label for="goods_end_time">물판 종료 시간:</label>
-    <input type="time" id="goods_end_time" required /><br /><br />
-    <label for="special">입장특전:</label>
-    <input type="text" id="special" required /><br /><br />
-    <label for="reservation_url">예약 링크:</label>
-    <input type="url" id="reservation_url" required /><br /><br />
-    <label for="live_event">라이브 이벤트:</label><br />
-    <input type="radio" id="nekiru" name="live_event" value="NEKIRU" checked />
-    <label for="nekiru">NEKIRU</label><br />
-    <input type="radio" id="ntore" name="live_event" value="NTORE" />
-    <label for="ntore">NTORE</label><br />
-    <input type="radio" id="pochipuri" name="live_event" value="POCHIPURI" />
-    <label for="pochipuri">POCHIPURI</label><br />
-    <input type="radio" id="hcrv" name="live_event" value="HCRV" />
-    <label for="hcrv">HCRV</label><br /><br />
-    <button onclick="generateTemplate()">생성</button>
+    <div class="container">
+      <h1>라이브 정보 입력</h1>
+      <label for="date">날짜:</label>
+      <input type="date" id="date" required /><br /><br />
+      <label for="event_name">이벤트 이름:</label>
+      <input type="text" id="event_name" required /><br /><br />
+      <label for="open_time">개장 시간:</label>
+      <input type="time" id="open_time" required /><br /><br />
+      <label for="start_time">개연 시간:</label>
+      <input type="time" id="start_time" required /><br /><br />
+      <label for="venue">회장:</label>
+      <input type="text" id="venue" required /><br /><br />
+      <label for="reservation_price">예약 가격:</label>
+      <input
+        type="number"
+        id="reservation_price"
+        min="0"
+        required
+      />₩<br /><br />
+      <label for="same_day_price">당일권 가격:</label>
+      <input type="number" id="same_day_price" min="0" required />₩<br /><br />
+      <label for="performance_start_time">출연 시작 시간:</label>
+      <input type="time" id="performance_start_time" required /><br /><br />
+      <label for="performance_end_time">출연 종료 시간:</label>
+      <input type="time" id="performance_end_time" required /><br /><br />
+      <label for="goods_start_time">물판 시작 시간:</label>
+      <input type="time" id="goods_start_time" required /><br /><br />
+      <label for="goods_end_time">물판 종료 시간:</label>
+      <input type="time" id="goods_end_time" required /><br /><br />
+      <label for="special">입장특전:</label>
+      <input type="text" id="special" required /><br /><br />
+      <label for="reservation_url">예약 링크:</label>
+      <input type="url" id="reservation_url" required /><br /><br />
+      <label for="live_event">라이브 이벤트:</label><br />
+      <input
+        type="radio"
+        id="nekiru"
+        name="live_event"
+        value="NEKIRU"
+        checked
+      />
+      <label for="nekiru">NEKIRU</label><br />
+      <input type="radio" id="ntore" name="live_event" value="NTORE" />
+      <label for="ntore">NTORE</label><br />
+      <input type="radio" id="pochipuri" name="live_event" value="POCHIPURI" />
+      <label for="pochipuri">POCHIPURI</label><br />
+      <input type="radio" id="hcrv" name="live_event" value="HCRV" />
+      <label for="hcrv">HCRV</label><br /><br />
+      <button onclick="generateTemplate()">생성</button>
 
-    <hr />
+      <hr />
 
-    <div id="template"></div>
+      <div id="template"></div>
+    </div>
 
     <script>
       function generateTemplate() {
@@ -73,23 +87,23 @@
         ).value;
 
         var template = `
-            【라이브 정보】
+                【라이브 정보】
 
-            ${date}
-            ▶️ 「${event_name}」
-            개장 ${open_time} / 개연 ${start_time}
-            회장 : ${venue}
-            요금 : 예약 ${reservation_price}₩ / 당일권 ${same_day_price}₩
+                ${date}
+                ▶️ 「${event_name}」
+                개장 ${open_time} / 개연 ${start_time}
+                회장 : ${venue}
+                요금 : 예약 ${reservation_price}₩ / 당일권 ${same_day_price}₩
 
-            출연🎤 ${performance_start_time} ~ ${performance_end_time}
-            물판📷 ${goods_start_time} ~ ${goods_end_time}
+                출연🎤 ${performance_start_time} ~ ${performance_end_time}
+                물판📷 ${goods_start_time} ~ ${goods_end_time}
 
-            🉐입장특전🉐 ${special}
+                🉐입장특전🉐 ${special}
 
-            ※ 주최 일괄 예약
-            ${reservation_url}
+                ※ 주최 일괄 예약
+                ${reservation_url}
 
-            #${live_event}_LIVE
+                #${live_event}_LIVE
             `;
 
         document.getElementById("template").innerText = template;
@@ -106,4 +120,95 @@
       }
     </script>
   </body>
+  <style>
+    /* 기본 설정 */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      margin-top: 10px;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    input[type="url"],
+    input[type="radio"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="radio"] {
+      width: auto;
+      margin-right: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    #template {
+      white-space: pre-wrap;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .alert {
+      background-color: #d4edda;
+      color: #155724;
+      border-color: #c3e6cb;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 4px;
+    }
+  </style>
 </html>
