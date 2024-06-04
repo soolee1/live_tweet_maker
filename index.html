@@ -62,8 +62,17 @@
     </div>
 
     <script>
+      function formatDate(dateString) {
+        var date = new Date(dateString);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var weekDays = ["일", "월", "화", "수", "목", "금", "토"];
+        var weekDay = weekDays[date.getDay()];
+        return `${year}년 ${month}월 ${day}일(${weekDay})`;
+      }
       function generateTemplate() {
-        var date = document.getElementById("date").value;
+        var date = formatDate(document.getElementById("date").value);
         var event_name = document.getElementById("event_name").value;
         var open_time = document.getElementById("open_time").value;
         var start_time = document.getElementById("start_time").value;
